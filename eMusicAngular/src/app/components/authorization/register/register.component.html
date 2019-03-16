@@ -1,0 +1,65 @@
+<div class="register-card" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-icon (click)="backgroundService.muted = !backgroundService.muted" class="mute-icon">
+      {{backgroundService.muted ? 'volume_off' : 'volume_up'}}</mat-icon>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <img class="logo" src="../../../assets/images/logo.png" />
+      <mat-card-title>eMusic</mat-card-title>
+      <mat-card-subtitle>Register</mat-card-subtitle>
+    </div>
+    <mat-card-content>
+      <div class="register-form" fxLayout="column" fxLayoutAlign="center center">
+        <form name="form" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+          <mat-form-field class="field" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" placeholder="Enter your email" [(ngModel)]="registerModel.email"
+              #email="ngModel" required>
+            <mat-icon matSuffix>alternate_email</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="field" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+              [(ngModel)]="registerModel.password" #password="ngModel" required>
+            <mat-icon class="hide-icon" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </mat-form-field>
+          <mat-form-field class="field" appearance="outline">
+            <mat-label>Confirm password</mat-label>
+            <input matInput name="confirmPassword" placeholder="Confirm your password"
+              [type]="hide ? 'password' : 'text'" [(ngModel)]="registerModel.confirmPassword" #confirmPassword="ngModel"
+              required>
+            <mat-icon class="hide-icon" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </mat-form-field>
+          <mat-form-field class="field" appearance="outline">
+            <mat-label>First name</mat-label>
+            <input matInput name="firstName" placeholder="Enter your first name" [(ngModel)]="registerModel.firstName"
+              #firstName="ngModel" required>
+            <mat-icon matSuffix>text_format</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="field" appearance="outline">
+            <mat-label>Last name</mat-label>
+            <input matInput name="lastName" placeholder="Enter your last name" [(ngModel)]="registerModel.lastName"
+              #lastName="ngModel" required>
+            <mat-icon matSuffix>text_format</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="field" appearance="outline">
+            <mat-label>Date of birth</mat-label>
+            <input matInput [matDatepicker]="picker" name="dateOfBirth" placeholder="Pick your date of birth"
+              [(ngModel)]="registerModel.dateOfBirth" #dateOfBirth="ngModel" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error></mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <a routerLink="/auth/login" class="card-action-button" mat-raised-button color="primary">Go Back</a>
+        <button (click)="submit()" class="card-action-button" mat-raised-button color="primary"
+          [disabled]="f.invalid">Register</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

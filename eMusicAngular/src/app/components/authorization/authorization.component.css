@@ -1,0 +1,10 @@
+.backgound {
+    position: fixed;
+    min-width: 100%; 
+    min-height: 100%;
+}
+
+#video {
+    min-width: 100%; 
+    min-height: 100%;
+}

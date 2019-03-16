@@ -1,0 +1,38 @@
+<div class="login-card" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-icon (click)="backgroundService.muted = !backgroundService.muted" class="mute-icon">{{backgroundService.muted ? 'volume_off' : 'volume_up'}}</mat-icon>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <img class="logo" src="../../../assets/images/logo.png"/>
+      <mat-card-title>eMusic</mat-card-title>
+      <mat-card-subtitle>Login</mat-card-subtitle>
+    </div>
+    <mat-card-content>
+      <div class="login-form" fxLayout="column" fxLayoutAlign="center center">
+        <mat-form-field class="field" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Enter your email" [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+          <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="field" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password"
+            required>
+          <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+          <mat-icon class="hide-icon" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center">
+        <button class="card-action-button"  mat-raised-button color="primary" [disabled]="password.invalid || email.invalid">Login</button>
+        <a class="card-action-button" mat-raised-button color="primary" routerLink="/auth/register">Register</a>
+        </div>
+        <div class="fb-login-button card-action-button" (click)="signInWithFB()" data-size="large" data-button-type="continue_with" data-auto-logout-link="false"
+          data-use-continue-as="true"></div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
