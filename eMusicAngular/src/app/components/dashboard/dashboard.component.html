@@ -1,3 +1,31 @@
-<p>
-  dashboard works!
-</p>
+<mat-sidenav-container class="container">
+    <mat-sidenav #sidenav mode="push">
+        <mat-toolbar>
+            <img class="logo" src="../../../assets/images/logo.png">
+            <span>eMusic</span>
+        </mat-toolbar>
+        <mat-nav-list role="list">
+            <a mat-list-item>
+                <mat-icon mat-list-icon>perm_identity</mat-icon>
+                Profile
+            </a>
+            <a mat-list-item>
+                <mat-icon mat-list-icon>shopping_cart</mat-icon>
+                Cart
+            </a>
+            <a mat-list-item>
+                <mat-icon mat-list-icon>music_note</mat-icon>
+                Music
+            </a>
+            <a mat-list-item (click)="signOut()" class="signOut" role="listitem">
+                <mat-icon mat-list-icon>exit_to_app</mat-icon>
+                Sign out
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

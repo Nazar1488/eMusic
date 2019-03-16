@@ -25,14 +25,13 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <div fxLayout="row" fxLayoutAlign="center">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <div>
         <button class="card-action-button"  mat-raised-button color="primary" [disabled]="password.invalid || email.invalid">Login</button>
-        <a class="card-action-button" mat-raised-button color="primary" routerLink="/auth/register">Register</a>
+        <button class="card-action-button" mat-raised-button color="primary" routerLink="/auth/register">Register</button>
         </div>
-        <div class="fb-login-button card-action-button" (click)="signInWithFB()" data-size="large" data-button-type="continue_with" data-auto-logout-link="false"
-          data-use-continue-as="true"></div>
-      </div>
+        <button class="card-action-button" (click)="signInWithFacebook()" mat-raised-button color="warn">Login with Facebook</button>
+        </div>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService, FacebookLoginProvider, SocialUser } from "angularx-social-login";
-import { BackgroundService } from 'src/app/services';
+import { BackgroundService, UserService } from 'src/app/services';
 
 @Component({
   selector: 'app-login',
@@ -13,26 +13,15 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('',[Validators.required]);
   hide = true;
-  user: SocialUser;
   loggedIn: boolean;
 
-  constructor(private authService: AuthService, private backgroundService: BackgroundService) { }
+  constructor(private backgroundService: BackgroundService, private userService: UserService) { }
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-      console.log(user);
-    });
   }
 
-  signInWithFB(): void {
-    let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    this.authService.signIn(socialPlatformProvider).then(
-      (userData) => {
-        console.log(userData);
-      }
-    );
+  signInWithFacebook() {
+    this.userService.externalSignIn();
   }
 
   getEmailErrorMessage() {

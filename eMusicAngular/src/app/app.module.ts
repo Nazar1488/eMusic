@@ -12,6 +12,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "angularx-social-login";
 
 import {
@@ -24,6 +27,7 @@ import {
 import { UserService, BackgroundService } from './services/';
 import { MustMatchDirective } from './directives';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AuthGuardService } from './guards';
 
 let config = new AuthServiceConfig([
   {
@@ -59,7 +63,10 @@ export function provideConfig() {
     MatInputModule,
     SocialLoginModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule
   ],
   providers: [
     UserService,
@@ -68,7 +75,8 @@ export function provideConfig() {
       provide: AuthServiceConfig,
       useFactory: provideConfig
     },
-    MatDatepickerModule
+    MatDatepickerModule,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
