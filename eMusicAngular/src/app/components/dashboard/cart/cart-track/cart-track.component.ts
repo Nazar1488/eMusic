@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Track } from 'src/app/models/track';
 import { CartService, MusicService } from 'src/app/services';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cart-track',
@@ -11,7 +12,7 @@ export class CartTrackComponent implements OnInit {
   
   @Input() track: Track;
 
-  constructor(private cartService: CartService, private musicService: MusicService) { }
+  constructor(private cartService: CartService, private musicService: MusicService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -21,6 +22,9 @@ export class CartTrackComponent implements OnInit {
   }
 
   remove() {
+    this.snackBar.open("Track removed from cart!", 'Close', {
+      duration: 1000
+    });
     this.cartService.remove(this.track);
   }
 }

@@ -18,6 +18,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSliderModule } from '@angular/material/slider';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "angularx-social-login";
 
 import {
@@ -84,7 +86,9 @@ export function provideConfig() {
     MatToolbarModule,
     MatListModule,
     MatProgressBarModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSnackBarModule,
+    MatSliderModule
   ],
   providers: [
     UserService,
