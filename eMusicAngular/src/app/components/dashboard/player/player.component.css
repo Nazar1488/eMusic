@@ -1,0 +1,19 @@
+.container {
+width: 100%;
+}
+
+audio {
+    visibility: hidden;
+}
+
+.play-icon {
+    cursor: pointer;
+}
+
+.progress-bar {
+    width: 50%;
+}
+
+.track-name {
+    font-size: 14px;
+}

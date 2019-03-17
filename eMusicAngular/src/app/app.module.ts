@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "angularx-social-login";
 
 import {
@@ -31,6 +32,8 @@ import { UserService, BackgroundService } from './services/';
 import { MustMatchDirective } from './directives';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AuthGuardService } from './guards';
+import { PlayerComponent } from './components/dashboard/player/player.component';
+import { MusicService } from './services/music.service';
 
 let config = new AuthServiceConfig([
   {
@@ -53,7 +56,8 @@ export function provideConfig() {
     MustMatchDirective,
     MusicComponent,
     ProfileComponent,
-    CartComponent
+    CartComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,8 @@ export function provideConfig() {
     MatNativeDateModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatProgressBarModule
   ],
   providers: [
     UserService,
@@ -82,7 +87,8 @@ export function provideConfig() {
       useFactory: provideConfig
     },
     MatDatepickerModule,
-    AuthGuardService
+    AuthGuardService,
+    MusicService
   ],
   bootstrap: [AppComponent]
 })

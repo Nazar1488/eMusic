@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MusicService } from 'src/app/services/music.service';
 
 @Component({
   selector: 'app-music',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MusicComponent implements OnInit {
 
-  constructor() { }
+  constructor(private musicService: MusicService) { }
 
   ngOnInit() {
   }
 
+  play() {
+    this.musicService.playTrack();
+  }
 }

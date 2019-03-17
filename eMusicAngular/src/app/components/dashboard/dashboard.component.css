@@ -21,3 +21,7 @@ mat-sidenav {
     bottom: 0;
     position: absolute;
 }
+
+.player {
+    width: 100%;
+}
