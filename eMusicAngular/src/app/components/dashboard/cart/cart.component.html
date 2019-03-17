@@ -1,6 +1,13 @@
-<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
-    <div *ngIf="cartService.cart.length == 0">
-        <h1>Cart is empty!</h1>
+<div *ngIf="cartService.cart.length == 0" class="container">
+    <div fxLayout="column" fxLayoutAlign="center center" class="container">
+        <div>
+            <h1>Cart is empty!</h1>
+            <mat-icon class="icon">remove_shopping_cart</mat-icon>
+        </div>
     </div>
-    <app-cart-track *ngFor="let t of cartService.cart" [track]="t"></app-cart-track>
+</div>
+<div *ngIf="cartService.cart.length != 0">
+    <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <app-cart-track *ngFor="let t of cartService.cart" [track]="t"></app-cart-track>
+    </div>
 </div>

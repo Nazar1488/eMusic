@@ -1,3 +1,12 @@
 app-cart-track {
     width: 90%;
 }
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.icon {
+    font-size: 150px;
+}
