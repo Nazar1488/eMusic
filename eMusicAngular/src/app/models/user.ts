@@ -3,4 +3,5 @@ export class User {
     firstName: string;
     lastName: string;
     dateOfBirth: Date;
+    balance: number;
 }

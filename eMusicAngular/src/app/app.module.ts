@@ -25,15 +25,15 @@ import {
   AuthorizationComponent,
   MusicComponent,
   ProfileComponent,
-  CartComponent
+  CartComponent,
+  TrackComponent,
+  PlayerComponent
 } from './components/';
 
-import { UserService, BackgroundService } from './services/';
+import { UserService, BackgroundService, MusicService } from './services/';
 import { MustMatchDirective } from './directives';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AuthGuardService } from './guards';
-import { PlayerComponent } from './components/dashboard/player/player.component';
-import { MusicService } from './services/music.service';
 
 let config = new AuthServiceConfig([
   {
@@ -57,7 +57,8 @@ export function provideConfig() {
     MusicComponent,
     ProfileComponent,
     CartComponent,
-    PlayerComponent
+    PlayerComponent,
+    TrackComponent
   ],
   imports: [
     BrowserModule,

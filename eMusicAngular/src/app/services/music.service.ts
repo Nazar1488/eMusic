@@ -1,25 +1,37 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Track } from '../models/track';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MusicService {
+export class MusicService implements OnInit {
 
   audio = new Audio();
   playing: boolean;
   currentTrack: Track;
-  availableTracks: Track[];
+  availableTracks = [
+    new Track("track1", '/../assets/music/track1.mp3', '/../assets/images/track1.jpg', "MOLLY", "Не плачу"),
+    new Track("track2", '/../assets/music/track2.mp3', '/../assets/images/track2.jpg', "АРИТМИЯ", "Помада"),
+    new Track("track3", '/../assets/music/track3.mp3', '/../assets/images/track3.jpg', "Martin Garrix", "No sleep"),
+    new Track("track1", '/../assets/music/track1.mp3', '/../assets/images/track1.jpg', "MOLLY", "Не плачу"),
+    new Track("track2", '/../assets/music/track2.mp3', '/../assets/images/track2.jpg', "АРИТМИЯ", "Помада"),
+    new Track("track3", '/../assets/music/track3.mp3', '/../assets/images/track3.jpg', "Martin Garrix", "No sleep"),
+    new Track("track1", '/../assets/music/track1.mp3', '/../assets/images/track1.jpg', "MOLLY", "Не плачу"),
+    new Track("track2", '/../assets/music/track2.mp3', '/../assets/images/track2.jpg', "АРИТМИЯ", "Помада"),
+    new Track("track3", '/../assets/music/track3.mp3', '/../assets/images/track3.jpg', "Martin Garrix", "No sleep"),
+  ];
 
   constructor() { 
-    this.currentTrack = new Track;
-    this.currentTrack.artist = "Test";
-    this.currentTrack.title = "Test";
-    this.currentTrack.trackPath = '/../assets/music/track.mp3';
   }
 
-  playTrack() {
-    this.currentTrack.trackPath = '/../assets/music/track.mp3'
+    
+  ngOnInit(): void {
+    this.audio.onended = this.playNext;
+  }
+
+
+  playTrack(trackId: string) {
+    this.currentTrack = this.availableTracks.find(t => t.id == trackId);
     this.audio.src = this.currentTrack.trackPath;
     this.audio.load();
     this.audio.play();
@@ -34,5 +46,14 @@ export class MusicService {
   pause() {
     this.playing = false;
     this.audio.pause();
+  }
+
+  playNext() {
+    var index = this.availableTracks.findIndex(t => t.id == this.currentTrack.id);
+    this.currentTrack = this.availableTracks[index];
+    this.audio.src = this.currentTrack.trackPath;
+    this.audio.load();
+    this.audio.play();
+    this.playing = true;
   }
 }
