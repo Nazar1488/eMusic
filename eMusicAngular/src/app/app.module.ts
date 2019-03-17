@@ -21,7 +21,10 @@ import {
   LoginComponent,
   RegisterComponent,
   DashboardComponent,
-  AuthorizationComponent
+  AuthorizationComponent,
+  MusicComponent,
+  ProfileComponent,
+  CartComponent
 } from './components/';
 
 import { UserService, BackgroundService } from './services/';
@@ -47,7 +50,10 @@ export function provideConfig() {
     RegisterComponent,
     DashboardComponent,
     AuthorizationComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    MusicComponent,
+    ProfileComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
