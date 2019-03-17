@@ -7,6 +7,7 @@ import { Track } from '../models/track';
 export class MusicService implements OnInit {
 
   audio = new Audio();
+  previousVolume: number;
   playing: boolean;
   currentTrack: Track;
   availableTracks = [
@@ -16,10 +17,10 @@ export class MusicService implements OnInit {
     new Track("track4", '/../assets/music/track4.mp3', '/../assets/images/track4.jpg', "KAZKA", "Плакала", 10)
   ];
 
-  constructor() { 
+  constructor() {
   }
 
-    
+
   ngOnInit(): void {
     this.audio.onended = this.playNext;
   }
@@ -50,5 +51,15 @@ export class MusicService implements OnInit {
     this.audio.load();
     this.audio.play();
     this.playing = true;
+  }
+
+  mute() {
+    if (this.audio.volume == 0) {
+      this.audio.volume = this.previousVolume;
+    }
+    else {
+      this.previousVolume = this.audio.volume;
+      this.audio.volume = 0;
+    }
   }
 }

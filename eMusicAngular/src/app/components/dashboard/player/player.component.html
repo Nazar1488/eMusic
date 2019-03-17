@@ -6,7 +6,8 @@
     <mat-progress-bar mode="determinate" [value]="musicService.playing ? musicService.audio.currentTime / musicService.audio.duration * 100 : 0" color="warn">
     </mat-progress-bar>
   </section>
-
+  <mat-icon color="accent" matSuffix class="play-icon" (click)="musicService.mute()">
+      {{musicService.audio.volume >= 0.75 ? 'volume_up' : musicService.audio.volume == 0 ? 'volume_mute' : 'volume_down'}}</mat-icon>
   <mat-slider
         max="1"
         min="0"
@@ -14,4 +15,6 @@
         thumbLabel="true"
         [(ngModel)]="musicService.audio.volume">
     </mat-slider>
+    <mat-icon class="play-icon" color="{{musicService.audio.loop ? 'warn' : 'accent'}}" matSuffix (click)="musicService.audio.loop = !musicService.audio.loop">
+        repeat_one</mat-icon>
 </div>
