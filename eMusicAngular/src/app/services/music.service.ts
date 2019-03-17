@@ -18,11 +18,14 @@ export class MusicService implements OnInit {
   ];
 
   constructor() {
+    this.currentTrack = this.availableTracks[0];
+    this.audio.src = this.currentTrack.trackPath;
+    this.audio.load();
+    this.audio.onended = this.nextTrack;
   }
 
 
   ngOnInit(): void {
-    this.audio.onended = this.playNext;
   }
 
 
@@ -44,13 +47,32 @@ export class MusicService implements OnInit {
     this.audio.pause();
   }
 
-  playNext() {
-    var index = this.availableTracks.findIndex(t => t.id == this.currentTrack.id);
-    this.currentTrack = this.availableTracks[index];
-    this.audio.src = this.currentTrack.trackPath;
-    this.audio.load();
-    this.audio.play();
-    this.playing = true;
+  nextTrack() {
+    if (this.currentTrack != null) {
+      var index = this.availableTracks.findIndex(t => t.id == this.currentTrack.id);
+      if (index == this.availableTracks.length - 1) {
+        index = -1;
+      }
+      this.currentTrack = this.availableTracks[index + 1];
+      this.audio.src = this.currentTrack.trackPath;
+      this.audio.load();
+      this.audio.play();
+      this.playing = true;
+    }
+  }
+
+  previousTrack() {
+    if (this.currentTrack != null) {
+      var index = this.availableTracks.findIndex(t => t.id == this.currentTrack.id);
+      if (index == 0) {
+        index = this.availableTracks.length;
+      }
+      this.currentTrack = this.availableTracks[index - 1];
+      this.audio.src = this.currentTrack.trackPath;
+      this.audio.load();
+      this.audio.play();
+      this.playing = true;
+    }
   }
 
   mute() {

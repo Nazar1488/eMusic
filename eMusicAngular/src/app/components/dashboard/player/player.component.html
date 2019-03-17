@@ -1,7 +1,10 @@
 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="container">
+    <img class="track-image" src="{{musicService.currentTrack.imagePath}}">
     <span class="track-name">{{musicService.currentTrack === undefined ? 'Artist' : musicService.currentTrack.artist}} - {{musicService.currentTrack === undefined ? 'Title' :  musicService.currentTrack.title}}</span>
+    <mat-icon class="play-icon" matSuffix (click)="musicService.previousTrack()">skip_previous</mat-icon>
   <mat-icon class="play-icon" matSuffix (click)="musicService.playing ? musicService.pause() : musicService.play()">
     {{musicService.playing ? 'pause' : 'play_arrow'}}</mat-icon>
+    <mat-icon class="play-icon" matSuffix (click)="musicService.nextTrack()">skip_next</mat-icon>
   <section class="progress-bar">
     <mat-progress-bar mode="determinate" [value]="musicService.playing ? musicService.audio.currentTime / musicService.audio.duration * 100 : 0" color="warn">
     </mat-progress-bar>

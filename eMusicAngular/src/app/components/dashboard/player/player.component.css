@@ -17,3 +17,8 @@ audio {
 .track-name {
     font-size: 14px;
 }
+
+.track-image {
+    height: 25px;
+    width: 25px;
+}
