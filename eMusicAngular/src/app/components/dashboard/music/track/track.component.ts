@@ -23,9 +23,15 @@ export class TrackComponent implements OnInit {
   }
 
   addToCart() {
-    this.snackBar.open("Track added to cart!", 'Close', {
-      duration: 1000
-    });
-    this.cartService.add(this.track);
+    if (this.cartService.add(this.track) == true) {
+      this.snackBar.open("Track added to cart!", 'Close', {
+        duration: 1000
+      });
+    }
+    else {
+      this.snackBar.open("Track already added to cart!", 'Close', {
+        duration: 1000
+      });
+    }
   }
 }

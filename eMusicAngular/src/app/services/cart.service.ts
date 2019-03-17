@@ -12,8 +12,12 @@ export class CartService {
     this.cart = [];
   }
 
-  add(track: Track) {
-    this.cart.push(track);
+  add(track: Track): boolean {
+    if (this.cart.find(t => t.id == track.id) == null) {
+      this.cart.push(track);
+      return true;
+    }
+    return false;
   }
 
   remove(track: Track) {
