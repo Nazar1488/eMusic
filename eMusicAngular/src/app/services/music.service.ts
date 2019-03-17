@@ -10,15 +10,10 @@ export class MusicService implements OnInit {
   playing: boolean;
   currentTrack: Track;
   availableTracks = [
-    new Track("track1", '/../assets/music/track1.mp3', '/../assets/images/track1.jpg', "MOLLY", "Не плачу"),
-    new Track("track2", '/../assets/music/track2.mp3', '/../assets/images/track2.jpg', "АРИТМИЯ", "Помада"),
-    new Track("track3", '/../assets/music/track3.mp3', '/../assets/images/track3.jpg', "Martin Garrix", "No sleep"),
-    new Track("track1", '/../assets/music/track1.mp3', '/../assets/images/track1.jpg', "MOLLY", "Не плачу"),
-    new Track("track2", '/../assets/music/track2.mp3', '/../assets/images/track2.jpg', "АРИТМИЯ", "Помада"),
-    new Track("track3", '/../assets/music/track3.mp3', '/../assets/images/track3.jpg', "Martin Garrix", "No sleep"),
-    new Track("track1", '/../assets/music/track1.mp3', '/../assets/images/track1.jpg', "MOLLY", "Не плачу"),
-    new Track("track2", '/../assets/music/track2.mp3', '/../assets/images/track2.jpg', "АРИТМИЯ", "Помада"),
-    new Track("track3", '/../assets/music/track3.mp3', '/../assets/images/track3.jpg', "Martin Garrix", "No sleep"),
+    new Track("track1", '/../assets/music/track1.mp3', '/../assets/images/track1.jpg', "MOLLY", "Не плачу", 2),
+    new Track("track2", '/../assets/music/track2.mp3', '/../assets/images/track2.jpg', "АРИТМИЯ", "Помада", 2),
+    new Track("track3", '/../assets/music/track3.mp3', '/../assets/images/track3.jpg', "Martin Garrix", "No sleep", 5),
+    new Track("track4", '/../assets/music/track4.mp3', '/../assets/images/track4.jpg', "KAZKA", "Плакала", 10)
   ];
 
   constructor() { 

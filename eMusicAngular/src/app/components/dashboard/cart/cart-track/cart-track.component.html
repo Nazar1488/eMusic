@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row" class="container" fxLayoutAlign="center center">
+      <div fxLayout="column" fxFlex="70" fxLayoutAlign="center start">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <img class="track-image" src="{{track.imagePath}}">
+          <h2>{{track.title}} - {{track.artist}}</h2>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+          <button mat-mini-fab (click)="play()" color="primary">
+            <mat-icon>play_circle_outline</mat-icon>
+          </button>
+          <button mat-mini-fab (click)="buy()" color="warn" matBadge="{{track.cost}}$" matBadgePosition="after"
+            matBadgeColor="primary">
+            <mat-icon>monetization_on</mat-icon>
+          </button>
+          <button mat-mini-fab (click)="remove()" color="primary">
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

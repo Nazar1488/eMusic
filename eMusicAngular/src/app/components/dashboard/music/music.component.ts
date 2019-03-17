@@ -12,8 +12,4 @@ export class MusicComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  play() {
-    this.musicService.playTrack();
-  }
 }

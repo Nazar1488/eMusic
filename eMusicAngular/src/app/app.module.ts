@@ -16,6 +16,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatNativeDateModule } from '@angular/material/core';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "angularx-social-login";
 
 import {
@@ -27,12 +29,14 @@ import {
   ProfileComponent,
   CartComponent,
   TrackComponent,
-  PlayerComponent
+  PlayerComponent,
+  CartTrackComponent
 } from './components/';
 
-import { UserService, BackgroundService, MusicService } from './services/';
+import { UserService, BackgroundService, MusicService, CartService } from './services/';
+
 import { MustMatchDirective } from './directives';
-import { MatNativeDateModule } from '@angular/material/core';
+
 import { AuthGuardService } from './guards';
 
 let config = new AuthServiceConfig([
@@ -58,7 +62,8 @@ export function provideConfig() {
     ProfileComponent,
     CartComponent,
     PlayerComponent,
-    TrackComponent
+    TrackComponent,
+    CartTrackComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +83,8 @@ export function provideConfig() {
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatBadgeModule
   ],
   providers: [
     UserService,
@@ -89,7 +95,8 @@ export function provideConfig() {
     },
     MatDatepickerModule,
     AuthGuardService,
-    MusicService
+    MusicService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })
