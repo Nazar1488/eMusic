@@ -43,5 +43,10 @@ namespace eMusic.API.Repositories
             await applicationContext.SaveChangesAsync();
             return resultTrack;
         }
+
+        public void DeleteAll()
+        {
+            applicationContext.RemoveRange(applicationContext.Tracks);
+        }
     }
 }

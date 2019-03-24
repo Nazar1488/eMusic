@@ -3,6 +3,7 @@ import { Track } from 'src/app/models/track';
 import { MusicService } from 'src/app/services';
 import { CartService } from 'src/app/services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-track',
@@ -12,14 +13,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class TrackComponent implements OnInit {
 
   @Input() track: Track;
+  apiUrl = "https://localhost:44370/api";
 
-  constructor(private musicService: MusicService, private cartService: CartService, private snackBar: MatSnackBar) { }
+  constructor(private musicService: MusicService, private cartService: CartService, private snackBar: MatSnackBar, private http: HttpClient) { }
 
   ngOnInit() {
   }
 
   playTrack() {
     this.musicService.playTrack(this.track.id);
+  }
+
+  getTrackImage() : string {
+    return `${this.apiUrl}/music/image/?id=${this.track.id}`;
   }
 
   addToCart() {

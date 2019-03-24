@@ -28,6 +28,7 @@ namespace eMusic.API
             services.AddScoped<TrackRepository>();
             services.AddScoped<UserRepository>();
             services.AddScoped<UserService>();
+            services.AddScoped<MusicService>();
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);

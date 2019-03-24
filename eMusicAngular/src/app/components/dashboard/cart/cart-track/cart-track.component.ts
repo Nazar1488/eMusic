@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CartTrackComponent implements OnInit {
   
   @Input() track: Track;
+  apiUrl = "https://localhost:44370/api";
 
   constructor(private cartService: CartService, private musicService: MusicService, private snackBar: MatSnackBar) { }
 
@@ -19,6 +20,10 @@ export class CartTrackComponent implements OnInit {
 
   play() {
     this.musicService.playTrack(this.track.id);
+  }
+
+  getTrackImage() : string {
+    return `${this.apiUrl}/music/image/?id=${this.track.id}`;
   }
 
   remove() {

@@ -1,37 +1,43 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Track } from '../models/track';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MusicService implements OnInit {
 
+  apiUrl = "https://localhost:44370/api";
   audio = new Audio();
   previousVolume: number;
   playing: boolean;
   currentTrack: Track;
-  availableTracks = [
-    new Track("track1", '/../assets/music/track1.mp3', '/../assets/images/track1.jpg', "MOLLY", "Не плачу", 2),
-    new Track("track2", '/../assets/music/track2.mp3', '/../assets/images/track2.jpg', "АРИТМИЯ", "Помада", 2),
-    new Track("track3", '/../assets/music/track3.mp3', '/../assets/images/track3.jpg', "Martin Garrix", "No sleep", 5),
-    new Track("track4", '/../assets/music/track4.mp3', '/../assets/images/track4.jpg', "KAZKA", "Плакала", 10)
-  ];
+  availableTracks: Track[];
 
-  constructor() {
-    this.currentTrack = this.availableTracks[0];
-    this.audio.src = this.currentTrack.trackPath;
-    this.audio.load();
-    this.audio.onended = this.nextTrack;
+  constructor(private http: HttpClient) {
+    this.http.get<Track[]>(`${this.apiUrl}/music/all`).subscribe(tracks => {
+      this.availableTracks = tracks;
+      this.currentTrack = this.availableTracks[0];
+      this.audio.src = this.getCurrentTrack();
+      this.audio.load();
+      this.audio.onended = this.nextTrack;
+    });
   }
-
 
   ngOnInit(): void {
   }
 
+  getCurrentTrackImage() : string {
+    return `${this.apiUrl}/music/image/?id=${this.currentTrack.id}`;
+  }
+
+  getCurrentTrack() : string {
+    return `${this.apiUrl}/music/track/?id=${this.currentTrack.id}`;
+  }
 
   playTrack(trackId: string) {
     this.currentTrack = this.availableTracks.find(t => t.id == trackId);
-    this.audio.src = this.currentTrack.trackPath;
+    this.audio.src = this.getCurrentTrack();
     this.audio.load();
     this.audio.play();
     this.playing = true;

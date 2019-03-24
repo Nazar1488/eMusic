@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="container">
-    <img class="track-image" src="{{musicService.currentTrack.imagePath}}">
+    <img class="track-image" src="{{musicService.getCurrentTrackImage()}}">
     <span class="track-name">{{musicService.currentTrack === undefined ? 'Artist' : musicService.currentTrack.artist}} - {{musicService.currentTrack === undefined ? 'Title' :  musicService.currentTrack.title}}</span>
     <mat-icon class="play-icon" matSuffix (click)="musicService.previousTrack()">skip_previous</mat-icon>
   <mat-icon class="play-icon" matSuffix (click)="musicService.playing ? musicService.pause() : musicService.play()">
