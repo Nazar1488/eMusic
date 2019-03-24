@@ -1,0 +1,31 @@
+<div fxLayout="colunm" fxLayoutAlign="center center">
+  <mat-card>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
+      <img mat-card-image class="track-image" src="{{getTrackImage()}}">
+      <div fxLayout="row wrap">
+        <mat-card-title>{{track.title}}</mat-card-title>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-card-subtitle>{{track.artist}}</mat-card-subtitle>
+      </div>
+      <div fxLayout="row wrap">
+        <fb-like size="large" layout="button_count" colorscheme="dark"></fb-like>
+      </div>
+    </div>
+    <mat-card-actions>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <a routerLink="/music" mat-fab color="primary">
+          <mat-icon>arrow_back</mat-icon>
+        </a>
+        <button mat-fab (click)="playTrack()" color="primary">
+          <mat-icon>play_circle_outline</mat-icon>
+        </button>
+        <button mat-fab (click)="addToCart()" color="warn" matBadge="{{track.cost}}$" matBadgePosition="after"
+          matBadgeColor="primary">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+      </div>
+      <fb-comments colorscheme="dark"></fb-comments>
+    </mat-card-actions>
+  </mat-card>
+</div>

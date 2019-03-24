@@ -8,3 +8,4 @@ export { CartComponent } from './dashboard/cart/cart.component';
 export { TrackComponent } from './dashboard/music/track/track.component';
 export { PlayerComponent } from './dashboard/player/player.component';
 export { CartTrackComponent } from './dashboard/cart/cart-track/cart-track.component';
+export { InfoComponent } from './dashboard/music/track/info/info.component'; 

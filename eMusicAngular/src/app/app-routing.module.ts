@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent, RegisterComponent, AuthorizationComponent, DashboardComponent, MusicComponent, ProfileComponent, CartComponent } from './components';
 import { AuthGuardService } from './guards';
+import { InfoComponent } from './components/dashboard/music/track/info/info.component';
 
 const routes: Routes = [
   {
     path: 'auth', component: AuthorizationComponent, children: [
-      { path: "", redirectTo: "/auth/login", pathMatch: "full"},
+      { path: "", redirectTo: "/auth/login", pathMatch: "full" },
       {
         path: 'login',
         component: LoginComponent
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'music',
         component: MusicComponent
+      },
+      {
+        path: 'info/:id',
+        component: InfoComponent
       }
     ]
   },

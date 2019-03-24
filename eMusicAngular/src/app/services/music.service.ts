@@ -11,6 +11,7 @@ export class MusicService implements OnInit {
   audio = new Audio();
   previousVolume: number;
   playing: boolean;
+  selectedTrack: Track;
   currentTrack: Track;
   availableTracks: Track[];
 
@@ -60,7 +61,7 @@ export class MusicService implements OnInit {
         index = -1;
       }
       this.currentTrack = this.availableTracks[index + 1];
-      this.audio.src = this.currentTrack.trackPath;
+      this.audio.src = this.getCurrentTrack();
       this.audio.load();
       this.audio.play();
       this.playing = true;
@@ -74,7 +75,7 @@ export class MusicService implements OnInit {
         index = this.availableTracks.length;
       }
       this.currentTrack = this.availableTracks[index - 1];
-      this.audio.src = this.currentTrack.trackPath;
+      this.audio.src = this.getCurrentTrack();
       this.audio.load();
       this.audio.play();
       this.playing = true;

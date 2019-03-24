@@ -1,0 +1,9 @@
+.track-image {
+    width: 300px;
+    height: 300px;
+    margin: 15px;
+}
+
+mat-card {
+    margin-top: 10px;
+}

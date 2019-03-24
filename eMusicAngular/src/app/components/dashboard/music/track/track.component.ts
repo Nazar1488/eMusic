@@ -4,6 +4,7 @@ import { MusicService } from 'src/app/services';
 import { CartService } from 'src/app/services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-track',
@@ -15,9 +16,15 @@ export class TrackComponent implements OnInit {
   @Input() track: Track;
   apiUrl = "https://localhost:44370/api";
 
-  constructor(private musicService: MusicService, private cartService: CartService, private snackBar: MatSnackBar, private http: HttpClient) { }
+  constructor(private musicService: MusicService, private cartService: CartService, private snackBar: MatSnackBar, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onTrackClick() {
+    this.musicService.selectedTrack = this.track;
+    console.log("click");
+    this.router.navigate(["/info", this.track.id]);
   }
 
   playTrack() {

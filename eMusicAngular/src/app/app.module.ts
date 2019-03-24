@@ -21,6 +21,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FacebookModule } from 'ngx-facebook';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "angularx-social-login";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -45,6 +46,7 @@ import { MustMatchDirective } from './directives';
 import { AuthGuardService } from './guards';
 
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { InfoComponent } from './components/dashboard/music/track/info/info.component';
 
 let config = new AuthServiceConfig([
   {
@@ -71,7 +73,8 @@ export function provideConfig() {
     PlayerComponent,
     TrackComponent,
     CartTrackComponent,
-    EmailDialog
+    EmailDialog,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,8 @@ export function provideConfig() {
     MatSnackBarModule,
     MatSliderModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    FacebookModule.forRoot()
   ],
   providers: [
     UserService,
