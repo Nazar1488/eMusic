@@ -17,6 +17,10 @@
                 <mat-icon mat-list-icon>music_note</mat-icon>
                 Music
             </a>
+            <a mat-list-item routerLink="/admin" (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>settings</mat-icon>
+                Admin Panel
+            </a>
             <a class="signOut" routerLink="/auth/login" mat-list-item (click)="signOut()">
                 <mat-icon mat-list-icon>exit_to_app</mat-icon>
                 Sign out

@@ -1,0 +1,40 @@
+<mat-tab-group>
+  <mat-tab label="Music">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <h1>Add new track</h1>
+      <form>
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-form-field>
+            <input matInput placeholder="Artist" [formControl]="artist" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Title" [formControl]="title" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Cost" [formControl]="cost" required>
+          </mat-form-field>
+          <div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <label>Audio file: </label>
+              <input #audio type="file" required>
+            </div>
+          </div>
+          <div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <label>Image file: </label>
+              <input #image type="file" required>
+            </div>
+          </div>
+        </div>
+      </form>
+      <button class="card-action-button" (click)="upload(audio.files, image.files)" mat-raised-button
+        color="primary" [disabled]="title.invalid || cost.invalid || artist.invalid">Upload</button>
+      <mat-progress-bar class="progress-bar" [color]="warn" [mode]="determinate" [value]="progress"></mat-progress-bar>
+
+      <span style="font-weight:bold;color:green;" *ngIf="message">
+        {{message}}
+      </span>
+    </div>
+  </mat-tab>
+  <mat-tab label="Users"> Content 2 </mat-tab>
+</mat-tab-group>

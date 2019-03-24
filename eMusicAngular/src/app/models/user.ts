@@ -4,4 +4,5 @@ export class User {
     lastName: string;
     dateOfBirth: Date;
     balance: number;
+    role: string
 }

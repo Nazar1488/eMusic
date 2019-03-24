@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent, RegisterComponent, AuthorizationComponent, DashboardComponent, MusicComponent, ProfileComponent, CartComponent } from './components';
+import { LoginComponent, RegisterComponent, AuthorizationComponent, DashboardComponent, MusicComponent, ProfileComponent, CartComponent, AdminPanelComponent } from './components';
 import { AuthGuardService } from './guards';
 import { InfoComponent } from './components/dashboard/music/track/info/info.component';
 
@@ -35,6 +35,9 @@ const routes: Routes = [
       {
         path: 'info/:id',
         component: InfoComponent
+      },
+      {
+        path: 'admin', component: AdminPanelComponent
       }
     ]
   },

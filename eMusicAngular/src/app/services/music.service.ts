@@ -91,4 +91,9 @@ export class MusicService implements OnInit {
       this.audio.volume = 0;
     }
   }
+
+  refresh() {
+    this.http.get<Track[]>(`${this.apiUrl}/music/all`).subscribe(tracks => {
+      this.availableTracks = tracks;});
+  }
 }
