@@ -23,11 +23,12 @@
           </mat-icon>
         </mat-form-field>
       </div>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
     </mat-card-content>
     <mat-card-actions>
       <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
         <div>
-        <button class="card-action-button"  mat-raised-button color="primary" [disabled]="password.invalid || email.invalid">Login</button>
+        <button class="card-action-button" (click)="login()" mat-raised-button color="primary" [disabled]="password.invalid || email.invalid">Login</button>
         <button class="card-action-button" mat-raised-button color="primary" routerLink="/auth/register">Register</button>
         </div>
         <button class="card-action-button" (click)="signInWithFacebook()" mat-raised-button color="warn">Login with Facebook</button>

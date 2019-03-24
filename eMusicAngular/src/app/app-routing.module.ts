@@ -4,7 +4,6 @@ import { LoginComponent, RegisterComponent, AuthorizationComponent, DashboardCom
 import { AuthGuardService } from './guards';
 
 const routes: Routes = [
-  { path: "", redirectTo: "/auth/login", pathMatch: "full"},
   {
     path: 'auth', component: AuthorizationComponent, children: [
       { path: "", redirectTo: "/auth/login", pathMatch: "full"},
@@ -19,8 +18,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService], children: [
-      { path: "", redirectTo: "/dashboard/profile", pathMatch: "full"},
+    path: '', component: DashboardComponent, canActivate: [AuthGuardService], children: [
       {
         path: 'profile',
         component: ProfileComponent
@@ -34,7 +32,8 @@ const routes: Routes = [
         component: MusicComponent
       }
     ]
-  }
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

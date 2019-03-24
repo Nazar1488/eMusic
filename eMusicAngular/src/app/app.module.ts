@@ -20,7 +20,9 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "angularx-social-login";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {
   LoginComponent,
@@ -32,7 +34,8 @@ import {
   CartComponent,
   TrackComponent,
   PlayerComponent,
-  CartTrackComponent
+  CartTrackComponent,
+  EmailDialog
 } from './components/';
 
 import { UserService, BackgroundService, MusicService, CartService } from './services/';
@@ -40,6 +43,8 @@ import { UserService, BackgroundService, MusicService, CartService } from './ser
 import { MustMatchDirective } from './directives';
 
 import { AuthGuardService } from './guards';
+
+import { JwtInterceptor, ErrorInterceptor } from './helpers';
 
 let config = new AuthServiceConfig([
   {
@@ -65,7 +70,8 @@ export function provideConfig() {
     CartComponent,
     PlayerComponent,
     TrackComponent,
-    CartTrackComponent
+    CartTrackComponent,
+    EmailDialog
   ],
   imports: [
     BrowserModule,
@@ -88,7 +94,9 @@ export function provideConfig() {
     MatProgressBarModule,
     MatBadgeModule,
     MatSnackBarModule,
-    MatSliderModule
+    MatSliderModule,
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     UserService,
@@ -100,8 +108,11 @@ export function provideConfig() {
     MatDatepickerModule,
     AuthGuardService,
     MusicService,
-    CartService
+    CartService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ EmailDialog ]
 })
 export class AppModule { }

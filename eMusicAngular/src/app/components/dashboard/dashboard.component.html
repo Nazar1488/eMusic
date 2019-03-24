@@ -5,19 +5,19 @@
             <span>eMusic</span>
         </mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item routerLink="/dashboard/profile" (click)="sidenav.toggle()">
+            <a mat-list-item routerLink="/profile" (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>perm_identity</mat-icon>
                 Profile
             </a>
-            <a mat-list-item routerLink="/dashboard/cart" (click)="sidenav.toggle()">
+            <a mat-list-item routerLink="/cart" (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>shopping_cart</mat-icon>
                 Cart
             </a>
-            <a mat-list-item routerLink="/dashboard/music" (click)="sidenav.toggle()">
+            <a mat-list-item routerLink="/music" (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>music_note</mat-icon>
                 Music
             </a>
-            <a class="signOut" mat-list-item (click)="signOut()">
+            <a class="signOut" routerLink="/auth/login" mat-list-item (click)="signOut()">
                 <mat-icon mat-list-icon>exit_to_app</mat-icon>
                 Sign out
             </a>

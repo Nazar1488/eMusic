@@ -1,0 +1,41 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h1 mat-dialog-title>Hi, {{data.firstName}}</h1>
+  <div mat-dialog-content>
+    <p>Please, fill the additional information</p>
+    <form name="form" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <mat-form-field class="field" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput name="email" placeholder="Enter your email" [(ngModel)]="data.email" #email="ngModel"
+            required>
+          <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="field" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+            [(ngModel)]="data.password" #password="ngModel" required>
+          <mat-icon class="hide-icon" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+        </mat-form-field>
+        <mat-form-field class="field" appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input matInput name="confirmPassword" placeholder="Confirm your password" [type]="hide ? 'password' : 'text'"
+            [(ngModel)]="data.confirmPassword" #confirmPassword="ngModel" required>
+          <mat-icon class="hide-icon" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+        </mat-form-field>
+        <mat-form-field class="field" appearance="outline">
+          <mat-label>Date of birth</mat-label>
+          <input matInput [matDatepicker]="picker" name="dateOfBirth" placeholder="Pick your date of birth"
+            [(ngModel)]="data.dateOfBirth" #dateOfBirth="ngModel" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [disabled]="f.invalid" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
+</div>
