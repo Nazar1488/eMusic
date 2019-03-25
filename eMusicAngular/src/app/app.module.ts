@@ -23,6 +23,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FacebookModule } from 'ngx-facebook';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "angularx-social-login";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -49,6 +51,8 @@ import { MustMatchDirective } from './directives';
 import { AuthGuardService } from './guards';
 
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { UserComponent } from './components/dashboard/admin-panel/user/user.component';
+import { RoleGuardService } from './guards/role-guard.service';
 
 let config = new AuthServiceConfig([
   {
@@ -77,7 +81,8 @@ export function provideConfig() {
     CartTrackComponent,
     EmailDialog,
     InfoComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +109,8 @@ export function provideConfig() {
     HttpClientModule,
     MatDialogModule,
     MatTabsModule,
+    MatRadioModule,
+    MatSelectModule,
     FacebookModule.forRoot()
   ],
   providers: [
@@ -115,6 +122,7 @@ export function provideConfig() {
     },
     MatDatepickerModule,
     AuthGuardService,
+    RoleGuardService,
     MusicService,
     CartService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

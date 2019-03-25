@@ -10,3 +10,4 @@ export { PlayerComponent } from './dashboard/player/player.component';
 export { CartTrackComponent } from './dashboard/cart/cart-track/cart-track.component';
 export { InfoComponent } from './dashboard/music/track/info/info.component';
 export { AdminPanelComponent } from './dashboard/admin-panel/admin-panel.component';
+export { UserComponent } from './dashboard/admin-panel/user/user.component';

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpRequest, HttpClient, HttpEventType } from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
-import { MusicService } from 'src/app/services';
+import { MusicService, UserService } from 'src/app/services';
+import { User } from 'src/app/models';
 
 @Component({
   selector: 'app-admin-panel',
@@ -17,7 +18,7 @@ export class AdminPanelComponent implements OnInit {
   public message: string;
   apiUrl = "https://localhost:44370/api";
 
-  constructor(private http: HttpClient, private musicServive: MusicService) { }
+  constructor(private http: HttpClient, private musicServive: MusicService, private userService: UserService) { }
 
   ngOnInit() {
   }

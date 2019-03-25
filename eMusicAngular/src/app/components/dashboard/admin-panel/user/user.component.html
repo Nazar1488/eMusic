@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row" class="container" fxLayoutAlign="center center">
+      <div fxLayout="column" fxFlex="70" fxLayoutAlign="center start">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <h2>{{user.firstName}} {{user.lastName}}</h2>
+          <label>Balance: {{user.balance}}$</label>
+          <label>Role: {{getUserRole()}}</label>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+          <mat-form-field>
+            <mat-label>Role</mat-label>
+            <mat-select [(value)]="selectedRole" (selectionChange)="updateUser()">
+              <mat-option value="User">User</mat-option>
+              <mat-option value="Moderator">Moderator</mat-option>
+              <mat-option value="Admin">Admin</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-mini-fab (click)="removeUser()" color="primary">
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

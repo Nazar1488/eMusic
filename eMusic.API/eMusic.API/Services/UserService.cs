@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -20,6 +21,21 @@ namespace eMusic.API.Services
         {
             this.userRepository = userRepository;
             this.appSettings = appSettings.Value;
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            return userRepository.GetAll();
+        }
+
+        public async Task<User> UpdateUser(User user)
+        {
+            return await userRepository.Update(user);
+        }
+
+        public async Task<User> RemoveUser(User user)
+        {
+            return await userRepository.Delete(user);
         }
 
         public UserResponse Login(LoginModel loginModel)

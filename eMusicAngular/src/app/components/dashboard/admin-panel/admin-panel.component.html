@@ -36,5 +36,11 @@
       </span>
     </div>
   </mat-tab>
-  <mat-tab label="Users"> Content 2 </mat-tab>
+  <mat-tab label="Users">
+    <div class="container">
+    <div fxLayout="column" class="users-container" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <app-user *ngFor="let u of userService.allUsers" [user]="u"></app-user>
+    </div>
+    </div>
+  </mat-tab>
 </mat-tab-group>

@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using eMusic.API.Models;
 using eMusic.API.Services;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eMusic.API.Controllers
@@ -14,12 +14,12 @@ namespace eMusic.API.Controllers
     public class AdminController : ControllerBase
     {
         private readonly MusicService musicService;
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly UserService userService;
 
-        public AdminController(MusicService musicService, IHostingEnvironment hostingEnvironment)
+        public AdminController(MusicService musicService, UserService userService)
         {
             this.musicService = musicService;
-            this.hostingEnvironment = hostingEnvironment;
+            this.userService = userService;
         }
 
         [HttpPost]
@@ -65,6 +65,29 @@ namespace eMusic.API.Controllers
             {
                 return StatusCode(500, "Internal server error");
             }
+        }
+
+        [HttpGet]
+        [Route("users")]
+        public IEnumerable<User> Users()
+        {
+            return userService.GetAll();
+        }
+
+        [HttpPost]
+        [Route("updateUser")]
+        public async Task<ActionResult> UpdateUser(User user)
+        {
+            await userService.UpdateUser(user);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("removeUser")]
+        public async Task<ActionResult> RemoveUser(User user)
+        {
+            await userService.RemoveUser(user);
+            return Ok();
         }
     }
 }

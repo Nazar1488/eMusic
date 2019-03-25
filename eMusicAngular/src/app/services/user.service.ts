@@ -12,14 +12,37 @@ import { FacebookRegisterModel } from '../models/facebook.register';
 })
 export class UserService {
 
+  currentUserRole = '';
   apiUrl = "https://localhost:44370/api";
   user = new User();
+  allUsers: User[];
   isLoggedIn = false;
 
   constructor(private authService: AuthService, private router: Router, private http: HttpClient) {
+    this.getAllUsers();
   }
 
-  externalSignIn() : Promise<SocialUser> {
+  getAllUsers() {
+    this.http.get<User[]>(`${this.apiUrl}/admin/users`).subscribe(users => {
+      this.allUsers = users;
+    });
+  }
+
+  updateUser(user: User) {
+    this.http.post<any>(`${this.apiUrl}/admin/updateUser`, user).subscribe(data => {
+      this.getAllUsers();
+      localStorage.setItem('currentUserRole', user.role.toString());
+      this.currentUserRole = user.role.toString();
+    });
+  }
+
+  removeUser(user: User) {
+    this.http.post<any>(`${this.apiUrl}/admin/removeUser`, user).subscribe(data => {
+      this.getAllUsers();
+    });
+  }
+
+  externalSignIn(): Promise<SocialUser> {
     let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     return this.authService.signIn(socialPlatformProvider);
   }
@@ -32,6 +55,8 @@ export class UserService {
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('currentUserRole', user.role);
+          this.currentUserRole = user.role;
         }
 
         return user;
@@ -52,6 +77,8 @@ export class UserService {
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('currentUserRole', user.role);
+          this.currentUserRole = user.role;
         }
 
         return user;
@@ -71,6 +98,8 @@ export class UserService {
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('currentUserRole', user.role);
+          this.currentUserRole = user.role;
         }
 
         return user;
@@ -82,6 +111,8 @@ export class UserService {
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('currentUserRole', user.role);
+          this.currentUserRole = user.role;
         }
 
         return user;
@@ -93,5 +124,7 @@ export class UserService {
       this.authService.signOut();
     }
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserRole');
+    this.currentUserRole = '';
   }
 }
