@@ -17,10 +17,18 @@ export class AdminPanelComponent implements OnInit {
   public progress: number;
   public message: string;
   apiUrl = "https://localhost:44370/api";
+  users: User[];
 
   constructor(private http: HttpClient, private musicServive: MusicService, private userService: UserService) { }
 
   ngOnInit() {
+    this.getAllUsers();
+  }
+
+  getAllUsers() {
+    this.http.get<User[]>(`${this.apiUrl}/admin/users`).subscribe(users => {
+        this.users = users;
+    });
   }
 
   upload(audio, image) {

@@ -1,0 +1,13 @@
+<div *ngIf="cartService.buyTracks == 0" class="container">
+  <div fxLayout="column" fxLayoutAlign="center center" class="container">
+      <h1>Buy some music!</h1>
+      <div class="icon">
+          <mat-icon [inline]="true">music_off</mat-icon>
+      </div>
+  </div>
+</div>
+<div *ngIf="cartService.cart.buyTracks != 0">
+  <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <app-my-track *ngFor="let t of cartService.buyTracks" [track]="t"></app-my-track>
+  </div>
+</div>

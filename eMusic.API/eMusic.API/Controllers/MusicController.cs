@@ -33,6 +33,41 @@ namespace eMusic.API.Controllers
         }
 
         [HttpGet]
+        [Route("cart")]
+        public ActionResult<IEnumerable<Track>> Cart(int userId)
+        {
+            return Ok(musicService.GetCartTracks(userId).Result);
+        }
+
+        [HttpGet]
+        [Route("myTracks")]
+        public async Task<IEnumerable<Track>> MyTracks(int userId)
+        {
+            return await musicService.GetBuyTracks(userId);
+        }
+
+        [HttpPost]
+        [Route("addToCart")]
+        public async Task<User> AddToCart(UserTrackRequest request)
+        {
+            return await musicService.AddTrackToCart(request.UserId, request.TrackId);
+        }
+
+        [HttpPost]
+        [Route("removeFromCart")]
+        public async Task<bool> RemoveFromCart(UserTrackRequest request)
+        {
+            return await musicService.RemoveFromCart(request.UserId, request.TrackId);
+        }
+
+        [HttpPost]
+        [Route("buy")]
+        public async Task<User> Buy(UserTrackRequest request)
+        {
+            return await musicService.BuyTrack(request.UserId, request.TrackId);
+        }
+
+        [HttpGet]
         [Route("track")]
         public async Task<ActionResult> Track(int id)
         {

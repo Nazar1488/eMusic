@@ -36,10 +36,10 @@
       </span>
     </div>
   </mat-tab>
-  <mat-tab label="Users">
+  <mat-tab *ngIf="userService.currentUser.role == 0" label="Users">
     <div class="container">
     <div fxLayout="column" class="users-container" fxLayoutAlign="start center" fxLayoutGap="10px">
-      <app-user *ngFor="let u of userService.allUsers" [user]="u"></app-user>
+      <app-user *ngFor="let user of users" [user]="user"></app-user>
     </div>
     </div>
   </mat-tab>

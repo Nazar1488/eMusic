@@ -6,5 +6,6 @@
         public int TrackId { get; set; }
         public Track Track { get; set; }
         public User User { get; set; }
+        public bool isBuy { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using eMusic.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace eMusic.API.Repositories
 {
@@ -15,12 +16,12 @@ namespace eMusic.API.Repositories
 
         public IEnumerable<User> GetAll()
         {
-            return applicationContext.Users;
+            return applicationContext.Users.Include(u => u.UserTracks);
         }
 
         public async Task<User> GetById(int id)
         {
-            return await applicationContext.Users.FindAsync(id);
+            return await applicationContext.Users.Include(u => u.UserTracks).FirstOrDefaultAsync(u => u.Id == id);
         }
 
         public async Task<User> Create(User user)

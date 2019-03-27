@@ -25,6 +25,7 @@ import { FacebookModule } from 'ngx-facebook';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material/chips';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from "angularx-social-login";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -53,6 +54,8 @@ import { AuthGuardService } from './guards';
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { UserComponent } from './components/dashboard/admin-panel/user/user.component';
 import { RoleGuardService } from './guards/role-guard.service';
+import { MyMusicComponent } from './components/dashboard/my-music/my-music.component';
+import {  MyTrackComponent } from './components/dashboard/my-music/my-track/my-track.component';
 
 let config = new AuthServiceConfig([
   {
@@ -82,7 +85,9 @@ export function provideConfig() {
     EmailDialog,
     InfoComponent,
     AdminPanelComponent,
-    UserComponent
+    UserComponent,
+    MyMusicComponent,
+    MyTrackComponent
   ],
   imports: [
     BrowserModule,
@@ -111,6 +116,7 @@ export function provideConfig() {
     MatTabsModule,
     MatRadioModule,
     MatSelectModule,
+    MatChipsModule,
     FacebookModule.forRoot()
   ],
   providers: [

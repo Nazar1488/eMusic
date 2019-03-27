@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace eMusic.API.Models
 {
@@ -14,6 +15,8 @@ namespace eMusic.API.Models
         public DateTime DateOfBirth { get; set; }
         public decimal Balance { get; set; }
         public UserRole Role { get; set; }
-        public IEnumerable<UserTrack> UserTracks { get; set; }
+
+        [JsonIgnore]
+        public List<UserTrack> UserTracks { get; set; }
     }
 }

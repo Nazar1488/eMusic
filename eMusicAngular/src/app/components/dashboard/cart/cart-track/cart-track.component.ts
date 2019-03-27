@@ -26,6 +26,10 @@ export class CartTrackComponent implements OnInit {
     return `${this.apiUrl}/music/image/?id=${this.track.id}`;
   }
 
+  buy() {
+    this.cartService.buy(this.track);
+  }
+
   remove() {
     this.snackBar.open("Track removed from cart!", 'Close', {
       duration: 1000

@@ -15,7 +15,7 @@ export class AuthGuardService implements CanActivate {
   constructor(private userService: UserService, private router: Router) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (localStorage.getItem('currentUser')) {
+    if (this.userService.currentUser) {
       return true;
   }
 

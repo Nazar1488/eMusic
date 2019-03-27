@@ -1,3 +1,6 @@
-<p>
-  profile works!
-</p>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h1>Hi, <strong>{{userService.currentUser.firstName}} {{userService.currentUser.lastName}}</strong>
+        <mat-chip color="primary" selected>{{getUserRole()}}</mat-chip>
+    </h1>
+    <h2>Your balance: <strong>{{userService.currentUser.balance}}$</strong></h2>
+</div>

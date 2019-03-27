@@ -9,6 +9,10 @@
                 <mat-icon mat-list-icon>perm_identity</mat-icon>
                 Profile
             </a>
+            <a mat-list-item routerLink="/mymusic" (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>library_music</mat-icon>
+                My Music
+            </a>
             <a mat-list-item routerLink="/cart" (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>shopping_cart</mat-icon>
                 Cart
@@ -17,7 +21,7 @@
                 <mat-icon mat-list-icon>music_note</mat-icon>
                 Music
             </a>
-            <a mat-list-item routerLink="/admin" (click)="sidenav.toggle()">
+            <a *ngIf="userService.currentUser.role != 2" mat-list-item routerLink="/admin" (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>settings</mat-icon>
                 Admin Panel
             </a>

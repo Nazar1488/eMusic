@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace eMusic.API.Models
 {
@@ -10,6 +11,8 @@ namespace eMusic.API.Models
         public string TrackPath { get; set; }
         public string ImagePath { get; set; }
         public decimal Cost { get; set; }
-        public IEnumerable<UserTrack> UserTracks { get; set; }
+
+        [JsonIgnore]
+        public List<UserTrack> UserTracks { get; set; }
     }
 }

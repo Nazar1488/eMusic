@@ -119,7 +119,9 @@ namespace eMusic.API.Services
                 FirstName = user.FirstName,
                 Id = user.Id,
                 LastName = user.LastName,
-                Token = tokenHandler.WriteToken(token)
+                Token = tokenHandler.WriteToken(token),
+                Role = user.Role,
+                Balance = user.Balance
             };
         }
     }

@@ -11,3 +11,4 @@ export { CartTrackComponent } from './dashboard/cart/cart-track/cart-track.compo
 export { InfoComponent } from './dashboard/music/track/info/info.component';
 export { AdminPanelComponent } from './dashboard/admin-panel/admin-panel.component';
 export { UserComponent } from './dashboard/admin-panel/user/user.component';
+export { MyMusicComponent } from './dashboard/my-music/my-music.component';

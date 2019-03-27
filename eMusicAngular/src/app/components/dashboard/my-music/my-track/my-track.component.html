@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row" class="container" fxLayoutAlign="center center">
+      <div fxLayout="column" fxFlex="70" fxLayoutAlign="center start">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <img class="track-image" src="{{getTrackImage()}}">
+          <h2>{{track.title}} - {{track.artist}}</h2>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+          <button mat-mini-fab (click)="play()" color="primary">
+            <mat-icon>play_circle_outline</mat-icon>
+          </button>
+          <button mat-mini-fab (click)="download()" color="warn"
+            matBadgeColor="primary">
+            <mat-icon>cloud_download</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

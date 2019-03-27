@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { AuthService, SocialUser, FacebookLoginProvider } from 'angularx-social-login';
 import { Router } from '@angular/router';
 import { User, Register, Login } from '../models';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { FacebookRegisterModel } from '../models/facebook.register';
 
 @Injectable({
@@ -12,33 +11,24 @@ import { FacebookRegisterModel } from '../models/facebook.register';
 })
 export class UserService {
 
-  currentUserRole = '';
+  currentUser: User;
   apiUrl = "https://localhost:44370/api";
   user = new User();
   allUsers: User[];
   isLoggedIn = false;
 
   constructor(private authService: AuthService, private router: Router, private http: HttpClient) {
-    this.getAllUsers();
-  }
-
-  getAllUsers() {
-    this.http.get<User[]>(`${this.apiUrl}/admin/users`).subscribe(users => {
-      this.allUsers = users;
-    });
   }
 
   updateUser(user: User) {
     this.http.post<any>(`${this.apiUrl}/admin/updateUser`, user).subscribe(data => {
-      this.getAllUsers();
       localStorage.setItem('currentUserRole', user.role.toString());
-      this.currentUserRole = user.role.toString();
+      this.currentUser.role = user.role;
     });
   }
 
   removeUser(user: User) {
     this.http.post<any>(`${this.apiUrl}/admin/removeUser`, user).subscribe(data => {
-      this.getAllUsers();
     });
   }
 
@@ -56,7 +46,8 @@ export class UserService {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('currentUserRole', user.role);
-          this.currentUserRole = user.role;
+          this.currentUser = user;
+          console.log(this.currentUser);
         }
 
         return user;
@@ -78,7 +69,7 @@ export class UserService {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('currentUserRole', user.role);
-          this.currentUserRole = user.role;
+          this.currentUser = user;
         }
 
         return user;
@@ -99,7 +90,7 @@ export class UserService {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('currentUserRole', user.role);
-          this.currentUserRole = user.role;
+          this.currentUser = user;
         }
 
         return user;
@@ -112,7 +103,7 @@ export class UserService {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('currentUserRole', user.role);
-          this.currentUserRole = user.role;
+          this.currentUser = user;
         }
 
         return user;
@@ -125,6 +116,6 @@ export class UserService {
     }
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentUserRole');
-    this.currentUserRole = '';
+    this.currentUser = null;
   }
 }

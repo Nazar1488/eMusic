@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent, RegisterComponent, AuthorizationComponent, DashboardComponent, MusicComponent, ProfileComponent, CartComponent, AdminPanelComponent } from './components';
+import { LoginComponent, RegisterComponent, MyMusicComponent, AuthorizationComponent, DashboardComponent, MusicComponent, ProfileComponent, CartComponent, AdminPanelComponent } from './components';
 import { AuthGuardService } from './guards';
 import { InfoComponent } from './components/dashboard/music/track/info/info.component';
 import { RoleGuardService } from './guards/role-guard.service';
@@ -22,8 +22,17 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, canActivate: [AuthGuardService], children: [
       {
+        path: '',
+        redirectTo: "/profile", 
+        pathMatch: "full"
+      },
+      {
         path: 'profile',
         component: ProfileComponent
+      },
+      {
+        path: 'mymusic',
+        component: MyMusicComponent
       },
       {
         path: 'cart',
